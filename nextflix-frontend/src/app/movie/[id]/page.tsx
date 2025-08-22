@@ -12,7 +12,15 @@ export default function MovieDetailPage() {
   const router = useRouter();
   const movieId = Array.isArray(params.id) ? params.id[0] : params.id;
   
-  const { data: movie, isLoading, error, refetch } = useMovieById(movieId);
+  const { data: movie, isLoading, error, refetch } = useMovieById(movieId || '');
+  
+  if (!movieId) {
+    return (
+      <div className="bg-black min-h-screen text-white">
+        <EmptyState type="generic" title="Movie ID Not Found" />
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
