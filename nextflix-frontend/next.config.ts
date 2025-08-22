@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://141.98.17.108:7829/api/:path*',
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
